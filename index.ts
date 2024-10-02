@@ -22,8 +22,8 @@ export let sessionMiddleWare = session({
   }),
 });
 app.use(sessionMiddleWare);
-bootstrab(app);
 dbConn();
+bootstrab(app);
 // Serve static files from the "public" folder
 app.use(express.static(path.join(__dirname, "public")));
 

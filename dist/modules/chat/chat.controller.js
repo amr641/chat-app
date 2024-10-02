@@ -17,7 +17,7 @@ const openChatConnection = (req, res) => {
     // Use shared session middleware for Socket.IO connections
     __1.io.engine.use(__1.sessionMiddleWare);
     // Set up Socket.IO connection
-    __1.io.on("connection", (defaultSocket) => {
+    __1.io.once("connection", (defaultSocket) => {
         const socket = defaultSocket;
         const session = socket.request.session; // Use specific type for session
         console.log(`User connected: ${session.userName}`);

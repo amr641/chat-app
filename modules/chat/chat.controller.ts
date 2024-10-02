@@ -14,11 +14,11 @@ export const openChatConnection = (req: Request, res: Response) => {
   const chatFilePath = path.join(__dirname, "../../public/chat.html");
   res.sendFile(chatFilePath);
 
-  // Use shared session middleware for Socket.IO connections
+
   io.engine.use(sessionMiddleWare);
   
   // Set up Socket.IO connection
-  io.on("connection", (defaultSocket: Socket) => {
+  io.once("connection", (defaultSocket: Socket) => {
     const socket = <SessionSocket>defaultSocket;
     const session = socket.request.session; // Use specific type for session
 

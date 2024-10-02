@@ -27,8 +27,8 @@ exports.sessionMiddleWare = (0, express_session_1.default)({
     }),
 });
 app.use(exports.sessionMiddleWare);
-(0, bootstrab_1.bootstrab)(app);
 (0, dbConn_1.dbConn)();
+(0, bootstrab_1.bootstrab)(app);
 // Serve static files from the "public" folder
 app.use(express_1.default.static(path_1.default.join(__dirname, "public")));
 // Endpoint to serve register, login, and chat pages
