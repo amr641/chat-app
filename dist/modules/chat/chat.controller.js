@@ -14,7 +14,6 @@ const openChatConnection = (req, res) => {
     // Serve the chat HTML file
     const chatFilePath = path_1.default.join(__dirname, "../../public/chat.html");
     res.sendFile(chatFilePath);
-    // Use shared session middleware for Socket.IO connections
     __1.io.engine.use(__1.sessionMiddleWare);
     // Set up Socket.IO connection
     __1.io.once("connection", (defaultSocket) => {
@@ -24,7 +23,7 @@ const openChatConnection = (req, res) => {
         // Handle incoming messages
         socket.on("sendMessage", (msg) => {
             // Broadcast message to all other users
-            socket.broadcast.emit("reply", `from ${session.userName}: ${msg}`);
+            socket.broadcast.emit("reply", `${session.userName}: ${msg}`);
         });
         // Handle user disconnection
         socket.on("disconnect", () => {

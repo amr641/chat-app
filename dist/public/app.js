@@ -1,3 +1,5 @@
+const params = new URLSearchParams(window.location.search);
+
 const socket = io("http://localhost:3000");
 document.addEventListener("DOMContentLoaded", () => {
   const chatBox = document.getElementById("chat-box");
@@ -35,3 +37,8 @@ document.addEventListener("DOMContentLoaded", () => {
     appendMessage(message, "received");
   });
 });
+// handel err
+let err = params.get("error");
+if (err) {
+  document.getElementById("formError").innerText = err;
+}

@@ -14,9 +14,8 @@ export const openChatConnection = (req: Request, res: Response) => {
   const chatFilePath = path.join(__dirname, "../../public/chat.html");
   res.sendFile(chatFilePath);
 
-
   io.engine.use(sessionMiddleWare);
-  
+
   // Set up Socket.IO connection
   io.once("connection", (defaultSocket: Socket) => {
     const socket = <SessionSocket>defaultSocket;
@@ -27,7 +26,7 @@ export const openChatConnection = (req: Request, res: Response) => {
     // Handle incoming messages
     socket.on("sendMessage", (msg: string) => {
       // Broadcast message to all other users
-      socket.broadcast.emit("reply", `from ${session.userName}: ${msg}`);
+      socket.broadcast.emit("reply", `${session.userName}: ${msg}`);
     });
 
     // Handle user disconnection
